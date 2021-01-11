@@ -30,60 +30,53 @@
     "review":"So bad it's bad",
     "score":7}
 ];
-const createMovie =>
-const movies =
-  JSON.parse(movies.json)
-
-const  reviews =
-JSON.parse(reviews.json)
-
-
- const  starRating = (rating) =>
-
- {
-
-    const score      = reviews.array[i].score
-    const rating   =  (score ) / 20
-    let stars  = '';
-    let full_stars = Math.round(rating);
-    let half_star = Math.round(rating*2) /2;
-    let empty_stars = 5 - full_stars - half_star;
-    for($i = 0; $i < $full_stars; $i++){
-      const stars = '<span class="fa fa-star checked"></span>';
-    }
-
-        if(half_star){
-      const stars = '<span class="fa fa-star-half-alt checked"></span>';
-    }
-
-    for($i = 0; $i < $empty_stars; $i++){
-      const stars  = '<span class="fa fa-star"></span>';
-    }
-    return stars;
-};
 
 
 
-const makeTweet =(tweet) => {
-  const movieTitle = movies_array[i].title
-  const year       = movies_array[i].year
-  const review     = reviews_array[i].review
-  const tweet      =    `${movieTitle}${year}${review}` + stars
-  if (tweet.includes(`${year}`) )
-    {return tweet;}
-      return false ;
+// const movies =
+//   JSON.parse(movies.json)
 
+// const  reviews =
+// JSON.parse(reviews.json)
+
+
+
+
+
+
+
+const makeTweet =(movie,review) => {
+
+    for (let i = 0;  i < movies_array.length;i++) {
+      const title = movies_array[i].title
+      const year  = movies_array[i].year
+     }
+
+
+    for (let i = 0;  i < reviews_array.length;i++) {
+      const reviewComment  = reviews_array[i].reviews
+      const score  = reviews_array[i].score
+        const rating   =  (score ) / 10
+        let stars  = '';
+        let full_stars = floor(rating/2);
+        let half_star = (rating%2);
+        for($i = 0; $i < $full_stars; $i++){
+          const stars = '<span class="fa fa-star checked"></span>';
+        }
+
+            if(half_star){
+          const stars = '<span class="fa fa-star-half-alt checked"></span>';
+        }
+
+      }
+       const tweet = `${title} (${year}):${review}`+ stars
+
+     tweet.length <= 140
+  if  ( tweet.length > 140  && movieTitle.length > 25)
+   {movieTitle.length == 25 && tweet.length <= 140;}
+  else (tweet.length > 140 && movieTitle.length <= 25 )
+    {tweet.substring(0,139);}
+  return tweet;
   };
 
-
-
-
-const validateTweet =(tweet,movieTitle) => {
-
- if (tweet.length =< 140) {return tweet;}
-
-  if  ( tweet.length > 140  && movieTitle.length > 25)
-   {movieTitle.length == 25 && tweet.length =< 140;}
-  if (tweet.length > 140 && movieTitle.length =< 25 ) {tweet.substring(0,139);}
-  return tweet
-};
+module.exports = { makeTweet };
