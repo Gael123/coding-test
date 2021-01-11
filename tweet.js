@@ -45,8 +45,8 @@
 
 
 
-const makeTweet =(movie,review) => {
-
+const makeTweet =(input) => {
+// let tweet = '';
     for (let i = 0;  i < movies_array.length;i++) {
       const title = movies_array[i].title
       const year  = movies_array[i].year
@@ -54,7 +54,7 @@ const makeTweet =(movie,review) => {
 
 
     for (let i = 0;  i < reviews_array.length;i++) {
-      const reviewComment  = reviews_array[i].reviews
+      const review  = reviews_array[i].review
       const score  = reviews_array[i].score
         const rating   =  (score ) / 10
         let stars  = '';
@@ -69,14 +69,15 @@ const makeTweet =(movie,review) => {
         }
 
       }
-       const tweet = `${title} (${year}):${review}`+ stars
+const tweeet = `${title} (${year}):${review}`+ stars
 
      tweet.length <= 140
-  if  ( tweet.length > 140  && movieTitle.length > 25)
+  if  ( tweet.length > 140  && title.length > 25)
    {movieTitle.length == 25 && tweet.length <= 140;}
-  else (tweet.length > 140 && movieTitle.length <= 25 )
+  else (tweet.length > 140 && title.length <= 25 )
     {tweet.substring(0,139);}
-  return tweet;
+   return tweet
+;
   };
 
 module.exports = { makeTweet };
