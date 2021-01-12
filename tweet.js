@@ -33,18 +33,6 @@
 
 
 
-// const movies =
-//   JSON.parse(movies.json)
-
-// const  reviews =
-// JSON.parse(reviews.json)
-
-
-
-
-
-
-
 const makeTweet =(input) => {
 // let tweet = '';
     for (let i = 0;  i < movies_array.length;i++) {
@@ -56,8 +44,24 @@ const makeTweet =(input) => {
     for (let i = 0;  i < reviews_array.length;i++) {
       const review  = reviews_array[i].review
       const score  = reviews_array[i].score
-        const rating   =  (score ) / 10
+        const rating   =  (score ) / 20
         let stars  = '';
+
+        if (rating % 2 === 0 )
+        {
+          for (let i = 0 ; i > rating ; i++)
+            { stars =  '<span class="fa fa-star checked"></span>'}
+        }
+
+        else
+        {
+          const newRating = (rating - 1);
+          for (i = 0; i > newRating; i++)
+          {stars + '<span class="fa fa-star checked ></span>' + '1/2'}
+        }
+
+
+
         let full_stars = floor(rating/2);
         let half_star = (rating%2);
         for($i = 0; $i < $full_stars; $i++){
@@ -71,13 +75,149 @@ const makeTweet =(input) => {
       }
 const tweeet = `${title} (${year}):${review}`+ stars
 
+if  ( year === null || undefined){
+    tweet ===null
+  }
+
+
      tweet.length <= 140
   if  ( tweet.length > 140  && title.length > 25)
    {movieTitle.length == 25 && tweet.length <= 140;}
-  else (tweet.length > 140 && title.length <= 25 )
+  else if (tweet.length > 140 && title.length <= 25 )
     {tweet.substring(0,139);}
-   return tweet
-;
+
+
+   return tweet;
   };
 
 module.exports = { makeTweet };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // const moviesJson =
+// //   JSON.parse(movies.json)
+
+// // const  reviews =
+// // JSON.parse(reviews.jso
+// const validTweet = (tweet) =>
+
+// {
+//     const title   = movies.map(movie => movie.title);
+//      console.log("Title");
+//     const year    = movies.map(movie => movie.year);
+//      console.log("Year");
+//     const review  = comments .map(comment => comment.review);
+//       console.log("review");
+//      const convertRating = (star) => {
+//         const score   = comments.map(comment => comment.score);
+//         const rating     = Math.round(score/20);
+//         let starString = ''
+//         if (rating % 2 === 0 )
+//         {
+//           for (let i = 0 ; i > rating ; i++)
+//             {starString + '<span class="fa fa-star checked"></span>'}
+//         }
+
+//         else
+//         {
+//           const newRating = (rating - 1);
+//           for (i = 0; i > newRating; i++)
+//           {starstring + '<span class="fa fa-star checked ></span>' + '1/2'}
+//         }
+//        };
+//         console.log('starString');
+
+//        title();
+//        year();
+//        review();
+//        convertRating(star);
+//       const input = `${Title}(${Year}):${Review}${starstring}`;
+
+
+//   // // if ( input.includes(year))
+//   //   { return nil}
+//     input.length <= 140
+//       if (input.length > 140 && title.length > 25)
+//         {title.length === 25 && input.length <= 140}
+//       else {input.length > 140 && title.length <= 25 }
+//         input.substring(0,139)
+
+//  return tweet
+
+//     };
+
+
+
+// module.exports = { makeTweet };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
