@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "eslint": "^7.17.0"
+  },
+  "dependencies": {
+    "requirejs": "^2.3.6",
+    "star-rating.js": "^3.4.0"
+  }
+}
