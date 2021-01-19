@@ -1,11 +1,13 @@
 
 require 'json'
 class Tweet
-  attr_accessor :movies, :reviews
+  attr_accessor :movies, :reviews, :stars, :ratings
 
   def initialize
      @movies = JSON.parse(File.read(ARGV[0]))
      @reviews = JSON.parse(File.read(ARGV[1]))
+     @stars = []
+     @ratings = []
 
 
    end
@@ -46,30 +48,30 @@ end
     @ratings << (score / 20.to_f).round()
                }
 
-       full_star = '★'
-       half_star ='1/2'
+full_star = '★'
   @stars = []
-  @ratings.each {|num|
-    if num.even? || num == 5
-      @stars << full_star * num
-    else
-     num  == num.odd?
-      @stars << (full_star *(num - 1) ) +half_star
-    end
-    if num == 0
-      @stars << half_star
-    end
+  @ratings.each { |num|
 
-  }
-
-puts @stars.inspect
-
+      if num.even? || num == 5
+        @stars << full_star * num
+      else
+        num.odd?
+        @stars << (full_star * (num-1) + '1/2')
+      end
+      if num == 0
+        @stars << '1/2'
+      end
+    }
+   @stars.delete_at(4)
+   @stars.flatten
+  puts @stars.inspect
 end
 
 # def convert_rating
 #  full_star = '★'
 #   @stars = []
-#   @ratings.each { |num|
+#   @ratings .each { |num|
+
 #       if num == 2|| 4 || 5
 #         @stars << full_star * num
 #       else
@@ -78,7 +80,6 @@ end
 #     }
 #    puts @stars.inspect
 # end
-
 
 def concat_arrays
   results = []
@@ -95,16 +96,19 @@ def concat_arrays
     item2 = @input[index]
     comments << item1 + item2
   end
- puts comments
+ # puts comments
+
+
+ tweetmovies = []
+ comments.each_with_index do |item1,index|
+  item2 = @stars[index]
+ tweetmovies << item1.to_s + item2.to_s
+
  end
+ puts tweetmovies
 
 
-
-
-
-
-
-
+ end
 
 
 #   movies = JSON.parse(File.read(ARGV[0]))
@@ -181,6 +185,5 @@ end
 tweet = Tweet.new
 # puts tweet.convert_mjson
 # puts tweet.convert_rjson
-# puts tweet.concat_arrays
-# puts tweet.convert_rating
-puts tweet.get_scores
+puts tweet.concat_arrays
+# puts tweet.get_scores
