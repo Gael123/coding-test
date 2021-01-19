@@ -47,17 +47,22 @@ end
                }
 
        full_star = '★'
+       half_star ='1/2'
   @stars = []
   @ratings.each {|num|
-    if num == 2|| 4 || 5
-        @stars << full_star * num
-      else
-        @stars << (full_star * '1/2')
-      end
+    if num.even? || num == 5
+      @stars << full_star * num
+    else
+     num  == num.odd?
+      @stars << (full_star *(num - 1) ) +half_star
+    end
+    if num == 0
+      @stars << half_star
+    end
 
   }
 
-puts @stars
+puts @stars.inspect
 
 end
 
