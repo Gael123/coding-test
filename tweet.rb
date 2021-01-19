@@ -70,14 +70,16 @@ def concat_arrays
   @movietitles.each_with_index do |item1,index|
     item2 = @years[index]
     results << item1 + item2
-  end
-   puts results
-  # comments = []
-  # results.each_with_index do |item1,index |
-  #   item2 = stars[index]
-  #   tweet << item1 + item2
-  # end
 
+  end
+  results.insert(2, @reviewtitles[2])
+   # puts results
+  comments = []
+  results.each_with_index do |item1,index |
+    item2 = @input[index]
+    comments << item1 + item2
+  end
+ puts comments
  end
 
 
@@ -164,5 +166,4 @@ tweet = Tweet.new
 puts tweet.convert_mjson
 puts tweet.convert_rjson
 puts tweet.concat_arrays
-puts tweet.convert_rating
-# tweet <<comment
+puts tweet.convert_rat
