@@ -5,3 +5,31 @@
     "Dr. Strangelove or How I Learned to Stop Worrying and Love the Bomb (1964): Hilarious Kubrick satire ★★★★★",
     "Plan 9 from outer space (1959): So bad it's bad ½"
 ]
+def get_scores
+  @reviews = reviews
+   scores = []
+  reviews.each { |review|
+    scores << review['score'].to_i
+  }
+   @ratings = []
+  scores.each {|score|
+    @ratings << (score / 20.to_f).round()
+               }
+
+
+  puts @ratings.inspect
+end
+
+def convert_rating
+ full_star = '★'
+  @stars = []
+  @ratings .each { |num|
+
+      if num == 2|| 4 || 5
+        @stars << full_star * num
+      else
+        @stars << (full_star * '1/2')
+      end
+    }
+   puts @stars.inspect
+end

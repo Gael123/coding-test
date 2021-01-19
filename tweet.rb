@@ -46,15 +46,25 @@ end
     @ratings << (score / 20.to_f).round()
                }
 
+       full_star = '★'
+  @stars = []
+  @ratings.each {|num|
+    if num == 2|| 4 || 5
+        @stars << full_star * num
+      else
+        @stars << (full_star * '1/2')
+      end
 
-  puts @ratings.inspect
+  }
+
+puts @stars
+
 end
 
 # def convert_rating
 #  full_star = '★'
 #   @stars = []
 #   @ratings.each { |num|
-
 #       if num == 2|| 4 || 5
 #         @stars << full_star * num
 #       else
@@ -63,6 +73,7 @@ end
 #     }
 #    puts @stars.inspect
 # end
+
 
 def concat_arrays
   results = []
@@ -163,7 +174,8 @@ end
 
 
 tweet = Tweet.new
-puts tweet.convert_mjson
-puts tweet.convert_rjson
-puts tweet.concat_arrays
-puts tweet.convert_rat
+# puts tweet.convert_mjson
+# puts tweet.convert_rjson
+# puts tweet.concat_arrays
+# puts tweet.convert_rating
+puts tweet.get_scores
