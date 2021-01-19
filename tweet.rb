@@ -1,40 +1,38 @@
-
 require 'json'
 class Tweet
-  attr_accessor :movies, :reviews
+  attr_accessor :movies, :reviews, :sentences
 
   def initialize
     @movies = JSON.parse(File.read(ARGV[0]))
      @reviews = JSON.parse(File.read(ARGV[1]))
-     @stars = []
-     @ratings = []
+     @sentences
    end
 
   def convert_mjson
-   @movies = movies
+    @movies = movies
      @movietitles = []
-     @years    = []
+     @years  = []
      @movies.each {|movie|
-      @movietitles << movie['title']
+      @movietitles << movie['title'].to_s
       @years << '(' + (movie['year']).to_i.to_s + ')' }
 
-       # puts @movietitles.inspect
-       # puts @years.inspect
+       puts @movietitles.inspect
+       puts @years.inspect
   end
 
-def convert_rjson
-  @reviews = reviews
-  @input = []
-  @reviewtitles = []
-  reviews.each { |review|
-   @input << ':' + review['review']
-     @reviewtitles << review['title']
-  }
+  def convert_rjson
+    @reviews = reviews
+    @input = []
+    @reviewtitles = []
+    reviews.each { |review|
+    @input << ':' + review['review'].to_s
+      @reviewtitles << review['title'].to_s
+      }
     # puts @input.inspect
     # puts @reviewtitles.inspect
 end
 
- def get_scores
+def get_scores
   @reviews = reviews
    scores = []
   @reviews.each { |review|
@@ -43,13 +41,11 @@ end
    @ratings = []
   scores.each {|score|
     @ratings << (score / 20.to_f).round()
-
                }
 def convert_ratings
 full_star = '★'
   @stars = []
   @ratings.each { |num|
-
       if num.even? || num == 5
         @stars << full_star * num
       else
@@ -64,28 +60,13 @@ full_star = '★'
    @stars.flatten
   # puts @stars.inspect
 end
-
-# def convert_rating
-#  full_star = '★'
-#   @stars = []
-#   @ratings .each { |num|
-
-#       if num == 2|| 4 || 5
-#         @stars << full_star * num
-#       else
-#         @stars << (full_star * '1/2')
-#       end
-#     }
-#    puts @stars.inspect
 end
 
 def concat_arrays
   results = []
-
   @movietitles.each_with_index do |item1,index|
     item2 = @years[index]
     results << item1 + item2
-
   end
   results.insert(2, @reviewtitles[2])
    # puts results
@@ -94,49 +75,47 @@ def concat_arrays
     item2 = @input[index]
     comments << item1 + item2
   end
- # puts comments
-
-comments
-
- sentences = []
+ @sentences = []
   comments.each_with_index do  |item1,index|
-   item2 = @stars[index].to_s
+  item2 = @stars[index].to_s
    sentences << item1 + item2
-
   end
-
- puts sentences.inspect
- end
-
-
-
+  @sentences.length
+  @sentences.include?("year")
+  puts @sentences.inspect
+end
 
  private
 
-  def length(tweet)
-    tweet.each { |string|
-        string.length <= 140
-       if tweet.length > 140 && movie['title'].length > 25
-         movie['title'].length == 25
-       else
-         tweet[0, 39]
-       end
+  def length
+    @sentences .each {| sentence|
+      sentence.length <= 40
+      if sentence.length > 140 && sentence[0].length > 25
+        sentence[0].length == 25 && sentence.length <= 40
+      else
+         sentence[0,39]
+      end
       }
   end
 end
 
 
+def include?
+@sentences.each_with_index {|item ,index|
+if  sentence.include?("year")
+puts sentence
+else
+sentence.delete_at(sentence[index])
 
-
-
+end
+}
+end
 
 tweet = Tweet.new
- tweet.convert_mjson
- tweet.convert_rjson
-# puts tweet.concat_arrays
- tweet.get_scores
- tweet.convert_ratings
-puts tweet.concat_arrays
-
-
+ puts tweet.convert_mjson
+#  tweet.convert_rjson
+# # puts tweet.concat_arrays
+#  tweet.get_scores
+#  tweet.convert_ratings
+# # puts tweet.concat_arrays
 
