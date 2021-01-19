@@ -1,7 +1,7 @@
 
 require 'json'
 class Tweet
-  attr_accessor :movies, :reviews, :stars, :ratings
+  attr_accessor :movies, :reviews
 
   def initialize
      @movies = JSON.parse(File.read(ARGV[0]))
@@ -17,7 +17,7 @@ class Tweet
      @movies = movies
      @movietitles = []
      @years    = []
-     movies.each {|movie|
+     @movies.each {|movie|
       @movietitles << movie['title']
       @years << '(' + (movie['year']).to_i.to_s + ')' }
 
@@ -96,16 +96,15 @@ def concat_arrays
     item2 = @input[index]
     comments << item1 + item2
   end
- # puts comments
+ puts comments
 
 
- tweetmovies = []
- comments.each_with_index do |item1,index|
-  item2 = @stars[index]
- tweetmovies << item1.to_s + item2.to_s
+ # = []
+ # comments.each_with_index do |item1,index|
+ #  item2 = @stars[index]
+ # tweetmovies << item1 +item2
+ # end
 
- end
- puts tweetmovies
 
 
  end
@@ -183,7 +182,7 @@ end
 
 
 tweet = Tweet.new
-# puts tweet.convert_mjson
-# puts tweet.convert_rjson
+puts tweet.convert_mjson
+puts tweet.convert_rjson
 puts tweet.concat_arrays
-# puts tweet.get_scores
+puts tweet.get_scores
