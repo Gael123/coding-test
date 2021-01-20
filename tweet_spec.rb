@@ -1,18 +1,31 @@
 require_relative 'tweet'
 require "test/unit"
+require 'rspec'
+include RSpec
+describe Tweet do
+     let(:movies) { Tweet.new }
+     it 'should return  a hashes array from JSON' do
+     expect(array).to eq '[{"title"=>"Star Wars", "review"=>"Great, this film was", "score"=>77}
+]'
+     it 'should iterate through hashes array' do
+     expect(array).to eq '["Star Wars", "Star Wars The Force Awakens",
+      "Dr. Strangelove or How I Learned to Stop Worrying and Love the Bomb", "Plan 9 from outer space"]'
+      end
+      end
 
-# require 'test/unit'
-class TestTweet < Test::Unit::TestCase
- #    def test_tweet
- #      # tweet = tweet.new
- #      assert_equal(["(1977)", "(2015)", "(1964)", "(1959)"],Tweet.new.convert_mjson
- # )
- #    end
+       it 'should convert scores to unicode star rating including half stars' do
+        expect(array).to eq '["★★★★", "★★1/2", "1/2", "★★★★★", "", "1/2"]'
+       end
 
-
-    def test_length
-     assert_equal( "Star Wars The Force Awake (2015): A long time ago in a galaxy far far away someone made the best sci-fi film of all time. Then some chap ★★½",Tweet.new.concat_arrays)
+         it 'concat string of arrays and form a tweet string ' do
+         expect(array).to eq '[`Movie Title (year): Review of the movie ★★★★½`]'
+        end
+        it ' should  iterate over array return a string of 140 characters if its more the movie title
+         should be less than 25 and if it stills exceeds 140 then reduce the words
+           in review till the whole string is 140 characters' do
+        expect string.length.to eq 140 if string.length
+      end
+       it ' ' do
+     expect string.length.to eq 140 if string.length
+      end
     end
-end
-
-

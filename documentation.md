@@ -1,3 +1,2 @@
-The application was written in javascript es 6 and can be run by running 'node tweet.js',First I used the map function to get a new array from the json then iterated through and pushed it to the new array tweet.
-Testing was done using console.log or calling on the makeTweet(movies,inputs),did this directly on the terminal by running node and pasting my code there,can also be done by running node tweet.js(much easier and readable)
-the function makeTweet returns an array containing title ,year ,review and stars
+The application was written in ruby and can be run by running 'ruby tweet.rb' and it should return an array of strings and each string follows the format `Movie Title (year): Review of the movie ★★★★½`
+Mostly used the test.json for test but the tweet_rspec contain tests suites to test the functionalityof the program run 'ruby tweet_spec movies.json reviews.json'
